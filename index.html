@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#210811">
+<meta name="description" content="Diwali Afterglow. Bollywood night. 15 Nov, 6 PM.">
+<title>Diwali Afterglow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<div class="bulbs" aria-hidden="true"></div>
+<header><a href="#top">AFTERGLOW</a><a href="#rsvp">RSVP ↗</a></header>
+
+<main id="top">
+<section class="hero">
+  <button class="diya" id="diya" aria-label="Light the diya">
+    <svg viewBox="0 0 120 92" aria-hidden="true"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff5e6"/><stop offset=".5" stop-color="#f7c96a"/><stop offset="1" stop-color="#e0742f"/></linearGradient></defs><path class="flame" d="M60 2c13 15 15 28 0 40-15-12-13-25 0-40z" fill="url(#fg)"/><path d="M8 48h104c0 26-24 42-52 42S8 74 8 48z" fill="#3a0c1c" stroke="#e8c47b" stroke-width="2"/></svg>
+    <span>tap me</span>
+  </button>
+  <h1 aria-label="Diwali Afterglow"><span data-split>Diwali</span><em data-split>Afterglow</em></h1>
+  <p class="sub">Bollywood night &nbsp;·&nbsp; 15 Nov &nbsp;·&nbsp; 6 PM</p>
+  <p class="count" id="count"></p>
+</section>
+
+<div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="tiles rv">
+  <article class="tile"><small>WHEN</small><div><b>Sun<em>15 Nov</em></b><p>6 PM onwards</p></div></article>
+  <button class="tile" id="loc" type="button"><small>WHERE</small><div><b>KNG 3<em>1805</em></b><p>same old spot. tap to copy</p></div></button>
+  <article class="tile"><small>DRESS</small><div><b>Bolly<em>wood</em></b><p>sequins aren’t optional</p></div></article>
+</section>
+
+<section class="rsvp rv" id="rsvp">
+  <h2>Coming<em>?</em></h2>
+  <form id="f" autocomplete="off">
+    <label class="sr" for="name">Your name</label>
+    <input id="name" placeholder="your name" required>
+    <div class="btns">
+      <button class="btn yes" type="submit">Lessgoo ↗</button>
+      <button class="btn no" id="no" type="button">Can’t</button>
+    </div>
+  </form>
+</section>
+</main>
+<footer>see you there ✦</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
