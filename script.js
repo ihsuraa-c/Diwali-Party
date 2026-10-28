@@ -1,7 +1,7 @@
 // RSVPs: add a WhatsApp number (digits, with country code, e.g. "919876543210") and/or an email.
 // WhatsApp wins if both are set. Leave both empty and the page just celebrates.
 const WHATSAPP = "";
-const RSVP_EMAIL = "";
+const RSVP_EMAIL = "aarushi23012@iiitd.ac.in";
 const PARTY = new Date("2026-11-15T18:00:00+05:30");
 
 const $ = s => document.querySelector(s), cv = $("#fx"), cx = cv.getContext("2d");
