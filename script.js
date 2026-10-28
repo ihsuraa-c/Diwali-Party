@@ -1,7 +1,10 @@
-// RSVPs: add a WhatsApp number (digits, with country code, e.g. "919876543210") and/or an email.
-// WhatsApp wins if both are set. Leave both empty and the page just celebrates.
-const WHATSAPP = "";
-const RSVP_EMAIL = "aarushi23012@iiitd.ac.in";
+// RSVPs go straight into your Google Form (and its linked Sheet).
+// Fill in the two ENTRY ids (see README.md). Until then the button just opens the form.
+const FORM_LINK = "https://forms.gle/Ydo7jZvvtRGdJQCU7";
+const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSe8odf2Fxi2M-bJRn7D1As1ssJlsiF5_yOd1crU9hp3r2euQw/formResponse";
+const ENTRY_NAME = "entry.1385258830";   // e.g. "entry.123456789"
+const ENTRY_COMING = "entry.600582352"; // e.g. "entry.987654321"
+const YES = "I'll be there", NO = "Nhi ho payega"; // must match the form's options exactly
 const PARTY = new Date("2026-11-15T18:00:00+05:30");
 
 const $ = s => document.querySelector(s), cv = $("#fx"), cx = cv.getContext("2d");
@@ -48,12 +51,12 @@ no.addEventListener("pointerenter", run); no.addEventListener("pointerdown", run
 function send(yes) {
   const n = $("#name"), v = n.value.trim();
   if (!v) { n.classList.add("shake"); setTimeout(() => n.classList.remove("shake"), 400); n.focus(); return toast("name first pls"); }
-  const msg = yes ? "Lessgoo! Count me in" : "Can’t make it";
   if (yes) { const r = $(".yes").getBoundingClientRect(); for (let i = 0; i < 5; i++) setTimeout(() => burst(r.left + Math.random() * r.width, r.top, 90), i * 160); }
-  toast(yes ? `${v}, you’re in. lessgoo` : `${v}, we’ll miss you`);
-  const text = `Diwali Afterglow: ${v} says ${msg}`;
-  if (WHATSAPP) setTimeout(() => open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank"), 1400);
-  else if (RSVP_EMAIL) setTimeout(() => { location.href = `mailto:${RSVP_EMAIL}?subject=${encodeURIComponent("Diwali Afterglow RSVP: " + v)}&body=${encodeURIComponent(text)}`; }, 1400);
+  const done = () => toast(yes ? `${v}, you’re in. lessgoo` : `${v}, we’ll miss you`);
+  if (ENTRY_NAME && ENTRY_COMING) {
+    fetch(FORM_ACTION, { method: "POST", mode: "no-cors", body: new URLSearchParams({ [ENTRY_NAME]: v, [ENTRY_COMING]: yes ? YES : NO }) })
+      .then(done).catch(() => toast("didn’t go through. try again?"));
+  } else { done(); setTimeout(() => open(FORM_LINK, "_blank"), 1400); }
 }
 $("#f").onsubmit = e => { e.preventDefault(); send(true); };
 no.onclick = () => { if (dodges >= 7) send(false); };
